@@ -18,8 +18,27 @@ const createLintingRule = () => ({
     emitWarning: !config.dev.showEslintErrorsInOverlay
   }
 })
+let proxyObj = {
+  '/api': {
+    target: 'http://192.168.2.24:9002',
+    ws: true,
+    changOrigin: true,
+    pathRewrite: {
+        '^/api': '/'
+    }
+  },
+}
 
 module.exports = {
+  devServer: {
+    open: false,
+    host: '0.0.0.0',
+    port: 8080,
+    https: false,
+    hotOnly: false,
+    proxy: proxyObj,
+    disableHostCheck: true
+  },
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -36,6 +55,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      "api": resolve("src/api")
     }
   },
   module: {

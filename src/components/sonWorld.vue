@@ -1,41 +1,30 @@
 <template>
-  <div class="hello">
-    <input v-model="str">
-    <button @click="setRequest">{{ msg }}</button>
-    <div>{{num}}</div>
-    <sonWorld></sonWorld>
+  <div>
+    <div style="width:50px;height:30px;background-color:pink;color:black;">{{num}}</div>
   </div>
 </template>
 
 <script>
 // import axios from 'api/index'
-import sonWorld from './sonWorld'
 export default {
-  name: 'HelloWorld',
+  name: 'sonWorld',
   data () {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-      num: 0,
-      str: 123
-    }
-  },
-  components: {
-    sonWorld
+    return {}
   },
   computed: {
-    // num: () => {
-    //   return this.$store.state.count
-    // }
+    num () {
+      debugger
+      return this.$store.state.count
+    }
   },
-  created () {
-    this.num = this.$store.state.count
-  },
+  // created () {
+  //   this.num = this.$store.state.count
+  // },
   methods: {
     setRequest () {
-      debugger
       // this.$store.dispatch('setNumber', this.str)
-      this.$store.commit('increment', this.str)
-      this.num = this.$store.state.count
+      // this.$store.commit('increment', this.str);
+      // this.num = this.$store.state.count
       // let data = {
       //   year: '2019',
       //   sqlKey: 'FinanceSelect.sjmx',
